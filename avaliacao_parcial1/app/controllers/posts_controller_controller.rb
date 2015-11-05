@@ -10,7 +10,7 @@ class PostsControllerController < ApplicationController
         @Post = Post.new
     end
     def create
-        @Post = Post.new note_params
+        @Post = Post.new post_params
         if @Post.save
             redirect_to [:posts]
         else
@@ -18,11 +18,11 @@ class PostsControllerController < ApplicationController
         end
     end
     def edit
-        @Post = User.find(params[:id])
+        @Post = Post.find(params[:id])
     end
     def update
-        @Post = User.find(params[:id])
-        if @Post.update_attributes(note_params)
+        @Post = Post.find(params[:id])
+        if @Post.update_attributes(post_params)
           redirect_to [:posts]
         else
           render 'edit'
@@ -35,7 +35,7 @@ class PostsControllerController < ApplicationController
     end
     
     private
-    def note_params
+    def post_params
        params.require(:post).permit(:title, :description)
     end
 end

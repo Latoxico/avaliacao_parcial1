@@ -1,8 +1,8 @@
 <h1>Posts</h1>
-<h2>Cadastro de post</h2>
+<h2>Alteração de post</h2>
 <%=form_for @Post do |f|%>
     <p><b>Titulo</b></p> <%=f.text_field :title%>
     <p><b>Descrição</b></p> <%=f.text_area :description%>
     <br>
-    <%=f.submit 'Salvar'%>
+    <%=f.update 'Salvar'%>
 <%end%>
