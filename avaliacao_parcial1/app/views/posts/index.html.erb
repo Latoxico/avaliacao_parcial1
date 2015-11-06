@@ -1,0 +1,36 @@
+<h1>Posts</h1>
+
+
+  <%= form_tag(posts_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+    <div class="input-append">
+      <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Buscar Posts" %>
+      <button class="btn" type="submit">Buscar<i class="icon-search"></i></button>
+    </div>
+  <% end %>
+  <%= yield %>
+</br>
+<table border="1">
+    <thead>
+        <tr>
+            <td><b>Titulo</b></td> 
+            <td><b>ação</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @AllPosts.each do |post| %>
+            <tr>
+                <td>
+                    <%=post.title%>
+                </td>
+                <td>
+                    <a href="posts/<%=post.id%>">Visualizar</a>
+                    <a href="posts/<%=post.id%>/edit/">Alterar</a>
+                    <%= link_to 'Excluir', post, method: :delete, data: { confirm: "Deseja excluir o registro?"} %>
+                </td>
+            </tr>
+        <%end%>
+            
+    </tbody>
+</table>
+<br> 
+<%= button_to "Novo Post", new_post_path, :class => "button", :method => :get  %>
